@@ -55,7 +55,7 @@ mongoose.connect('mongodb://localhost/blog', {
         console.log('数据库链接失败')
     } else {
         console.log('数据库链接成功')
-        app.listen(4399, () => {
+        app.listen(8080, () => {
             console.log('服务器开启了~~~,端口:4399')
         })
     }
