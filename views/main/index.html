@@ -1,0 +1,26 @@
+﻿{% extends './layout.html' %}
+{% block content %}
+{%for content in contents%}
+<article class="post">
+	<div class="post-head text-center">
+		<h1>{{content.title}}</h1>
+		<div class="post-meta text-center">
+			<div>作者:<a>{{content.user.username}}</a></div>
+			<div>发布时间:<time class="post-date"
+					datetime="{{content.addtime|date('Y-m-d H:i:s',-8*60)}}">{{content.addtime|date('Y-m-d H:i:s',-8*60)}}</time>
+			</div>
+			<div><span>阅读量：</span>{{content.view}} <span>评论数：10</span></div>
+		</div>
+	</div>
+	<div class="post-content">
+		<p>
+			{{content.description}}
+		</p>
+	</div>
+	<div class="post-permalink">
+		<a class="btn btn-info" href="/view?content_id={{content.id}}">阅读全文</a>
+	</div>
+</article>
+{%endfor%}
+{% include 'page.html' %}
+{%endblock%}

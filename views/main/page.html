@@ -1,0 +1,11 @@
+<nav aria-label="...">
+	<ul class="pager">
+		<li class="previous"><a href="{{title}}?FL={{FL}}&page={%if page-1<=1%}{{1}}{%else%}{{page-1}}{%endif%}"><span
+					aria-hidden="true">&larr;</span> 上一页</a>
+		</li>
+		<li style="margin-top:10px;"> <b>{{page}}/{{pages}}</b></li>
+		<li class="next"><a href="{{title}}?FL={{FL}}&page={%if page+1>pages%}{{pages}}{%else%}{{page+1}}{%endif%}">下一页
+				<span aria-hidden="true">&rarr;</span></a></li>
+	</ul>
+
+</nav>

@@ -1,0 +1,55 @@
+﻿{% extends './layout.html' %}
+{% block content %}
+<article class="post">
+	<div class="post-head text-center">
+		<h1>{{content.title}}</h1>
+		<div class="post-meta text-center">
+			<div>作者:<a>{{content.user.username}}</a></div>
+			<div>发布时间:<time class="post-date"
+					datetime="{{content.addtime|date('Y-m-d H:i:s',-8*60)}}">{{content.addtime|date('Y-m-d H:i:s',-8*60)}}</time>
+			</div>
+			<div><span>阅读量：</span>{{content.view}} <span>评论数：10</span></div>
+		</div>
+	</div>
+	<div class="post-content">
+		<p>
+			{{content.content}}
+		</p>
+	</div>
+</article>
+<!--评论区域-->
+<div class="leftBox borderColor message">
+
+	<h3 class="colInfo"><strong>评论</strong><span class="em">一共有<em id="messageCount">0</em>条评论</span></h3>
+	{% if userInfo %}
+	<p class="colInfo">
+
+		<textarea id=messageContent rows="2" cols="50"></textarea>
+		<input type="hidden" id="contentID" value="{{ content.id }}">
+		<br>
+		<button id="messageBtn">提交</button>
+	</p>
+	{%else%}
+	<div class="colInfo bgDanger boxHidden">你还未登录，请先登录...</div>
+	{%endif%}
+	<div class="messageList">
+	</div>
+
+
+	<nav aria-label="...">
+		<ul class="pager">
+			<li class="previous"><a
+					href="view?content_id={{ content.id }}&page={%if page-1<=1%}{{1}}{%else%}{{page-1}}{%endif%}"><span
+						aria-hidden="true">&larr;</span> 上一页</a>
+			</li>
+			<li style="margin-top:10px;"> <b>{{page}}/{{pages}}</b></li>
+			<li class="next"><a
+					href="view?content_id={{ content.id }}&page={%if page+1>pages%}{{pages}}{%else%}{{page+1}}{%endif%}">下一页
+					<span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+
+	</nav>
+
+</div>
+<script src="js/comment.js"></script>
+{%endblock%}
